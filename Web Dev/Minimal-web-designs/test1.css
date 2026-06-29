@@ -1,0 +1,128 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#f3f5ff 0%,#fff0f9 100%);
+    color:#333;
+    min-height:100vh;
+}
+
+.hero-container{
+    max-width:1100px;
+    margin:0 auto;
+    padding:20px;
+    height:750px;
+    position:relative;
+}
+
+.nav-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 0px;
+}
+
+.web-logo{
+    font-size:1.5rem;
+    font-weight:700;
+    color:#5a4ff3;
+}
+
+.nav-links{
+    display:flex;
+    list-style:none;
+    gap:50px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#5a5a5a;
+    font-size:1rem;
+    transition:color 0.2s;
+    font-weight:700;
+}
+
+.nav-links a:hover{
+    color:#5a4ff3;
+}
+
+.btn{
+    font-weight:700;
+    font-size:0.9rem;
+    text-decoration:none;
+    border-radius:8px;
+    padding:12px 24px;
+}
+
+.btn-primary{
+    background-color:#8b5cf6;
+    color:white;
+    box-shadow:0px 4px 10px rgba(139,92,246,0.3);
+}
+
+.btn-secondary{
+    background-color:#333;
+    color:white;
+    box-shadow:0px 4px 10px rgba(140, 140, 140, 0.3);
+}
+
+.hero-content{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:60px;
+}
+
+.hero-text{
+    flex:1;
+    padding-right:50px;
+}
+
+.hero-text h1{
+    font-size:3.3rem;
+    color:#1f2937;
+    line-height:1.2;
+    margin-bottom:20px;
+}
+
+.hero-text p{
+    font-size:1.1rem;
+    color:#808080;
+    line-height:1.6;
+    margin-bottom:30px;
+    font-weight:700;
+}
+
+.hero-buttons{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.hero-image{
+    flex:1;
+    display:flex;
+    justify-content:right;
+    position:absolute;
+    top:150px;
+    left:700px;
+}
+
+.image-pane{
+    background:rgba(255,255,255,0.7);
+    display:flex;
+    height:550px;
+    width:250px;
+    align-items:center;
+    justify-content:center;
+    color:#999;
+    font-weight:700;
+    border-radius:15px;
+    backdrop-filter:blur(10px);
+    border:8px solid white;
+    box-shadow:0px 25px 50px rgba(0,0,0,0.05);
+}
