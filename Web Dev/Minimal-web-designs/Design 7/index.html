@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Priya Sharma — CS &amp; AI/ML Student</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="nav__inner">
+    <a href="#home" class="nav__logo" data-link>P<span>.</span>S</a>
+    <nav class="nav__links" id="navLinks">
+      <a href="#home" class="nav__link active" data-link>Home</a>
+      <a href="#about" class="nav__link" data-link>About</a>
+      <a href="#skills" class="nav__link" data-link>Skills</a>
+      <a href="#projects" class="nav__link" data-link>Projects</a>
+      <a href="#contact" class="nav__link" data-link>Contact</a>
+    </nav>
+    <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== HOME ===== -->
+  <section id="home" class="section hero">
+    <div class="hero__text">
+      <p class="hero__eyebrow">// undergrad · cs &amp; ai/ml specialization</p>
+      <h1 class="hero__title">Building things that <span class="gradient-text">learn,<br>think &amp; ship.</span></h1>
+      <p class="hero__sub">I'm Priya — a CS undergrad specializing in AI/ML, currently obsessed with the gap between a Jupyter notebook and a product someone actually uses. I build models, then I build the interface around them.</p>
+      <div class="hero__cta">
+        <a href="#projects" class="btn btn--primary" data-link>See My Work</a>
+        <a href="#contact" class="btn btn--ghost" data-link>Let's Talk</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat"><span class="hero__stat-num">8+</span><span>ML Projects</span></div>
+        <div class="hero__stat"><span class="hero__stat-num">3</span><span>Research Papers Read/Wk</span></div>
+        <div class="hero__stat"><span class="hero__stat-num">12</span><span>Hackathons</span></div>
+      </div>
+    </div>
+
+    <div class="hero__orbit-wrap">
+      <div class="orbit-system">
+        <div class="orbit-ring orbit-ring--1"></div>
+        <div class="orbit-ring orbit-ring--2"></div>
+        <div class="orbit-ring orbit-ring--3"></div>
+        <div class="profile-circle">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=faces" alt="Portrait of Priya Sharma" loading="lazy">
+        </div>
+        <span class="orbit-tag orbit-tag--1">Py</span>
+        <span class="orbit-tag orbit-tag--2">ML</span>
+        <span class="orbit-tag orbit-tag--3">{ }</span>
+        <span class="orbit-tag orbit-tag--4">∑</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section about">
+    <p class="section__eyebrow">01 / About</p>
+    <div class="about__grid">
+      <h2 class="about__lead">
+        I think in <span class="gradient-text">tensors and trade-offs</span> — model accuracy is only half the job; the other half is making it usable.
+      </h2>
+      <div class="about__body">
+        <p>I'm a Computer Science undergraduate specializing in AI/ML, splitting my time between coursework in deep learning theory and shipping side projects that turn that theory into something tangible — a deployed model, a working app, a clean dashboard.</p>
+        <p>Recent focus areas: transformer architectures, computer vision pipelines, and getting comfortable with the unglamorous parts of ML — data cleaning, deployment, and explaining results to people who don't care about your loss curve.</p>
+        <div class="about__timeline">
+          <div class="timeline-item">
+            <span class="timeline-dot dot--orange"></span>
+            <div><strong>2023 — Started B.Tech CSE</strong><p>Core CS foundations: DSA, OS, DBMS, networks.</p></div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot dot--blue"></span>
+            <div><strong>2024 — AI/ML Specialization Track</strong><p>Machine learning, deep learning, NLP coursework + first Kaggle competitions.</p></div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot dot--purple"></span>
+            <div><strong>2025 — Applied Projects &amp; Research</strong><p>Building end-to-end ML products, contributing to open source, exploring research.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills" class="section skills">
+    <p class="section__eyebrow">02 / Skills</p>
+    <h2 class="section__title">Tools I work with</h2>
+    <p class="section__sub">Self-assessed proficiency — hover or tap a bar to see exactly where it stands.</p>
+
+    <div class="skills__columns">
+      <div class="skills__col">
+        <h3 class="skills__col-title">Languages &amp; Core</h3>
+        <div class="skill-bar" data-level="90">
+          <div class="skill-bar__head"><span>Python</span><span class="skill-bar__pct">90%</span></div>
+          <div class="skill-bar__track"><div class="skill-bar__fill fill--orange"></div></div>
+        </div>
+        <div class="skill-bar" data-level="75">
+          <div class="skill-bar__head"><span>C++ / DSA</span><span class="skill-bar__pct">75%</span></div>
+          <div class="skill-bar__track"><div class="skill-bar__fill fill--orange"></div></div>
+        </div>
+        <div class="skill-bar" data-level="60">
+          <div class="skill-bar__head"><span>SQL</span><span class="skill-bar__pct">60%</span></div>
+          <div class="skill-bar__track"><div class="skill-bar__fill fill--orange"></div></div>
+        </div>
+        <div class="skill-bar" data-level="55">
+          <div class="skill-bar__head"><span>JavaScript</span><span class="skill-bar__pct">55%</span></div>
+          <div class="skill-bar__track"><div class="skill-bar__fill fill--orange"></div></div>
+        </div>
+      </div>
+
+      <div class="skills__col">
+        <h3 class="skills__col-title">ML / AI Stack</h3>
+        <div class="skill-bar" data-level="85">
+          <div class="skill-bar__head"><span>PyTorch</span><span class="skill-bar__pct">85%</span></div>
+          <div class="skill-bar__track"><div class="skill-bar__fill fill--blue"></div></div>
+        </div>
+        <div class="skill-bar" data-level="80">
+          <div class="skill-bar__head"><span>scikit-learn</span><span class="skill-bar__pct">80%</span></div>
+          <div class="skill-bar__track"><div class="skill-bar__fill fill--blue"></div></div>
+        </div>
+        <div class="skill-bar" data-level="70">
+          <div class="skill-bar__head"><span>TensorFlow</span><span class="skill-bar__pct">70%</span></div>
+          <div class="skill-bar__track"><div class="skill-bar__fill fill--blue"></div></div>
+        </div>
+        <div class="skill-bar" data-level="65">
+          <div class="skill-bar__head"><span>Hugging Face / NLP</span><span class="skill-bar__pct">65%</span></div>
+          <div class="skill-bar__track"><div class="skill-bar__fill fill--blue"></div></div>
+        </div>
+      </div>
+
+      <div class="skills__col">
+        <h3 class="skills__col-title">Tools &amp; Practice</h3>
+        <div class="skill-bar" data-level="78">
+          <div class="skill-bar__head"><span>Pandas / NumPy</span><span class="skill-bar__pct">78%</span></div>
+          <div class="skill-bar__track"><div class="skill-bar__fill fill--purple"></div></div>
+        </div>
+        <div class="skill-bar" data-level="70">
+          <div class="skill-bar__head"><span>Git &amp; GitHub</span><span class="skill-bar__pct">70%</span></div>
+          <div class="skill-bar__track"><div class="skill-bar__fill fill--purple"></div></div>
+        </div>
+        <div class="skill-bar" data-level="50">
+          <div class="skill-bar__head"><span>Docker</span><span class="skill-bar__pct">50%</span></div>
+          <div class="skill-bar__track"><div class="skill-bar__fill fill--purple"></div></div>
+        </div>
+        <div class="skill-bar" data-level="45">
+          <div class="skill-bar__head"><span>Cloud (AWS/GCP basics)</span><span class="skill-bar__pct">45%</span></div>
+          <div class="skill-bar__track"><div class="skill-bar__fill fill--purple"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" class="section projects">
+    <p class="section__eyebrow">03 / Projects</p>
+    <h2 class="section__title">Things I've built</h2>
+
+    <!-- Filter controls -->
+    <div class="projects__filters" id="projectFilters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="ml">Machine Learning</button>
+      <button class="filter-btn" data-filter="cv">Computer Vision</button>
+      <button class="filter-btn" data-filter="nlp">NLP</button>
+      <button class="filter-btn" data-filter="web">Web App</button>
+    </div>
+
+    <div class="projects__grid" id="projectsGrid">
+
+      <article class="project-card" data-category="cv">
+        <div class="project-card__inner">
+          <div class="project-card__front">
+            <div class="project-card__tag tag--blue">Computer Vision</div>
+            <h3>Real-Time Sign Language Translator</h3>
+            <p>A CNN-based model that classifies hand gestures from webcam feed in real time and translates them to text.</p>
+            <div class="project-card__stack"><span>PyTorch</span><span>OpenCV</span><span>Streamlit</span></div>
+            <span class="project-card__flip-hint">Hover to see details ↻</span>
+          </div>
+          <div class="project-card__back">
+            <h4>Highlights</h4>
+            <ul>
+              <li>92% validation accuracy on 26-class gesture set</li>
+              <li>Custom data augmentation pipeline</li>
+              <li>Deployed as a live Streamlit demo</li>
+            </ul>
+            <a href="#" class="project-card__link">View on GitHub →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" data-category="nlp">
+        <div class="project-card__inner">
+          <div class="project-card__front">
+            <div class="project-card__tag tag--purple">NLP</div>
+            <h3>Lecture Notes Summarizer</h3>
+            <p>Fine-tuned a transformer model to condense long lecture transcripts into structured, exam-ready notes.</p>
+            <div class="project-card__stack"><span>Hugging Face</span><span>BART</span><span>FastAPI</span></div>
+            <span class="project-card__flip-hint">Hover to see details ↻</span>
+          </div>
+          <div class="project-card__back">
+            <h4>Highlights</h4>
+            <ul>
+              <li>Fine-tuned on 500+ annotated transcript pairs</li>
+              <li>ROUGE-L score improved 18% over base model</li>
+              <li>Used daily by 40+ classmates</li>
+            </ul>
+            <a href="#" class="project-card__link">View on GitHub →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" data-category="ml">
+        <div class="project-card__inner">
+          <div class="project-card__front">
+            <div class="project-card__tag tag--orange">Machine Learning</div>
+            <h3>Campus Placement Predictor</h3>
+            <p>An ensemble model predicting placement outcomes from academic + extracurricular data, with an explainability layer.</p>
+            <div class="project-card__stack"><span>scikit-learn</span><span>SHAP</span><span>Pandas</span></div>
+            <span class="project-card__flip-hint">Hover to see details ↻</span>
+          </div>
+          <div class="project-card__back">
+            <h4>Highlights</h4>
+            <ul>
+              <li>Random Forest + XGBoost ensemble, 87% accuracy</li>
+              <li>SHAP-based explainability dashboard</li>
+              <li>Presented at college tech symposium</li>
+            </ul>
+            <a href="#" class="project-card__link">View on GitHub →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" data-category="web">
+        <div class="project-card__inner">
+          <div class="project-card__front">
+            <div class="project-card__tag tag--blue">Web App</div>
+            <h3>StudyBuddy — AI Quiz Generator</h3>
+            <p>A full-stack app that turns any PDF into an auto-generated quiz using an LLM, with spaced-repetition scheduling.</p>
+            <div class="project-card__stack"><span>React</span><span>FastAPI</span><span>OpenAI API</span></div>
+            <span class="project-card__flip-hint">Hover to see details ↻</span>
+          </div>
+          <div class="project-card__back">
+            <h4>Highlights</h4>
+            <ul>
+              <li>End-to-end PDF → quiz pipeline</li>
+              <li>Spaced-repetition algorithm for review scheduling</li>
+              <li>200+ active student users in beta</li>
+            </ul>
+            <a href="#" class="project-card__link">View on GitHub →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" data-category="cv ml">
+        <div class="project-card__inner">
+          <div class="project-card__front">
+            <div class="project-card__tag tag--purple">CV + ML</div>
+            <h3>Crop Disease Detector</h3>
+            <p>A mobile-friendly CNN that identifies plant diseases from leaf photos, built for a hackathon focused on agri-tech.</p>
+            <div class="project-card__stack"><span>TensorFlow Lite</span><span>Flutter</span><span>Kaggle Dataset</span></div>
+            <span class="project-card__flip-hint">Hover to see details ↻</span>
+          </div>
+          <div class="project-card__back">
+            <h4>Highlights</h4>
+            <ul>
+              <li>Quantized model runs on-device, &lt;15MB</li>
+              <li>Trained on 38-class PlantVillage dataset</li>
+              <li>1st runner-up, college AgriTech hackathon</li>
+            </ul>
+            <a href="#" class="project-card__link">View on GitHub →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" data-category="nlp web">
+        <div class="project-card__inner">
+          <div class="project-card__front">
+            <div class="project-card__tag tag--orange">NLP + Web</div>
+            <h3>Resume-to-Role Matcher</h3>
+            <p>Embeds resumes and job descriptions into the same vector space to score and rank candidate-role fit.</p>
+            <div class="project-card__stack"><span>Sentence-BERT</span><span>FAISS</span><span>Flask</span></div>
+            <span class="project-card__flip-hint">Hover to see details ↻</span>
+          </div>
+          <div class="project-card__back">
+            <h4>Highlights</h4>
+            <ul>
+              <li>Semantic similarity search over 1000+ resumes</li>
+              <li>Sub-200ms query time using FAISS indexing</li>
+              <li>Built for college placement cell pilot</li>
+            </ul>
+            <a href="#" class="project-card__link">View on GitHub →</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section contact">
+    <p class="section__eyebrow">04 / Contact</p>
+    <h2 class="contact__title">Open to internships, research &amp; <span class="gradient-text">interesting problems.</span></h2>
+    <p class="contact__sub">If you're hiring for an AI/ML internship, running a research project, or just want to talk about a paper you read — my inbox is open.</p>
+
+    <form class="contact__form" id="contactForm">
+      <div class="form-row">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required>
+      </div>
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-row">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" placeholder="What are you working on?" required></textarea>
+      </div>
+      <button type="submit" class="btn btn--primary">Send Message</button>
+      <p class="form-status" id="formStatus" aria-live="polite"></p>
+    </form>
+
+    <div class="contact__social">
+      <a href="#" aria-label="GitHub">GitHub</a>
+      <a href="#" aria-label="LinkedIn">LinkedIn</a>
+      <a href="#" aria-label="Kaggle">Kaggle</a>
+      <a href="#" aria-label="Email">Email</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; <span id="year"></span> Priya Sharma. Built with HTML, CSS &amp; JavaScript.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
