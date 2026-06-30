@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Rivera — Frontend Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="nav__inner">
+    <a href="#home" class="nav__logo">A<span>·</span>R</a>
+    <nav class="nav__links">
+      <a href="#home" class="nav__link active" data-link>Home</a>
+      <a href="#about" class="nav__link" data-link>About</a>
+      <a href="#skills" class="nav__link" data-link>Skills</a>
+      <a href="#projects" class="nav__link" data-link>Projects</a>
+      <a href="#contact" class="nav__link" data-link>Contact</a>
+    </nav>
+    <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== HOME ===== -->
+  <section id="home" class="section hero">
+    <div class="hero__text">
+      <p class="hero__eyebrow">Frontend Developer / Chennai</p>
+      <h1 class="hero__title">I build interfaces<br>that feel <span class="text-purple">considered.</span></h1>
+      <p class="hero__sub">Alex Rivera — I turn dense product requirements into clean, fast, accessible web experiences. Currently building component systems and motion-led UI.</p>
+      <div class="hero__cta">
+        <a href="#projects" class="btn btn--primary" data-link>View Projects</a>
+        <a href="#contact" class="btn btn--ghost" data-link>Get in Touch</a>
+      </div>
+    </div>
+
+    <div class="hero__orbit-wrap">
+      <div class="orbit-system">
+        <div class="orbit-ring orbit-ring--1"></div>
+        <div class="orbit-ring orbit-ring--2"></div>
+        <div class="orbit-ring orbit-ring--3"></div>
+        <div class="profile-circle">
+          <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400&h=400&fit=crop&crop=faces" alt="Portrait of Alex Rivera" loading="lazy">
+        </div>
+        <span class="orbit-tag orbit-tag--1">JS</span>
+        <span class="orbit-tag orbit-tag--2">UI</span>
+        <span class="orbit-tag orbit-tag--3">CSS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section about">
+    <p class="section__eyebrow">01 — About</p>
+    <div class="about__grid">
+      <h2 class="about__lead">
+        I'm a developer who treats the browser as a craft surface — every pixel, transition, and millisecond is a decision, not an accident.
+      </h2>
+      <div class="about__body">
+        <p>Over the past several years I've worked across startups and agencies, shipping marketing sites, dashboards, and design systems. I care most about the gap between "it works" and "it feels right" — that's where I spend most of my time.</p>
+        <p>Outside of client work, I write about CSS architecture, contribute small utilities to open source, and obsess over type pairings I'll probably never use twice.</p>
+        <div class="about__facts">
+          <div class="fact"><span class="fact__num">5+</span><span class="fact__label">Years building for the web</span></div>
+          <div class="fact"><span class="fact__num">40+</span><span class="fact__label">Shipped products</span></div>
+          <div class="fact"><span class="fact__num">12</span><span class="fact__label">Design systems authored</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills" class="section skills">
+    <p class="section__eyebrow">02 — Skills</p>
+    <h2 class="section__title">What I work with</h2>
+    <div class="skills__grid">
+      <div class="skill-card">
+        <h3>Languages</h3>
+        <ul>
+          <li>JavaScript (ES2023)</li>
+          <li>TypeScript</li>
+          <li>HTML5 &amp; CSS3</li>
+          <li>Python</li>
+        </ul>
+      </div>
+      <div class="skill-card skill-card--accent-blue">
+        <h3>Frameworks</h3>
+        <ul>
+          <li>React &amp; Next.js</li>
+          <li>Vue 3</li>
+          <li>Tailwind CSS</li>
+          <li>Node / Express</li>
+        </ul>
+      </div>
+      <div class="skill-card skill-card--accent-purple">
+        <h3>Tooling</h3>
+        <ul>
+          <li>Git &amp; GitHub Actions</li>
+          <li>Figma</li>
+          <li>Vite / Webpack</li>
+          <li>Docker</li>
+        </ul>
+      </div>
+      <div class="skill-card skill-card--accent-orange">
+        <h3>Practice</h3>
+        <ul>
+          <li>Design systems</li>
+          <li>Accessibility (WCAG)</li>
+          <li>Performance tuning</li>
+          <li>Motion design</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" class="section projects">
+    <p class="section__eyebrow">03 — Projects</p>
+    <h2 class="section__title">Selected work</h2>
+    <div class="projects__grid">
+
+      <article class="project-card">
+        <div class="project-card__tag">Web App</div>
+        <h3>Lumen — Habit Tracker</h3>
+        <p>A minimal, offline-first habit tracker with streak visualizations and local-first sync.</p>
+        <div class="project-card__stack">
+          <span>React</span><span>IndexedDB</span><span>Framer Motion</span>
+        </div>
+        <a href="#" class="project-card__link">View case study →</a>
+      </article>
+
+      <article class="project-card">
+        <div class="project-card__tag">Design System</div>
+        <h3>Atlas UI Kit</h3>
+        <p>A themeable component library used across four internal products, built for accessibility-first teams.</p>
+        <div class="project-card__stack">
+          <span>TypeScript</span><span>Storybook</span><span>Radix</span>
+        </div>
+        <a href="#" class="project-card__link">View case study →</a>
+      </article>
+
+      <article class="project-card">
+        <div class="project-card__tag">Marketing Site</div>
+        <h3>Northwind Studio</h3>
+        <p>An award-nominated agency site with scroll-triggered motion and a custom WebGL hero.</p>
+        <div class="project-card__stack">
+          <span>Next.js</span><span>GSAP</span><span>Three.js</span>
+        </div>
+        <a href="#" class="project-card__link">View case study →</a>
+      </article>
+
+      <article class="project-card">
+        <div class="project-card__tag">Dashboard</div>
+        <h3>Pulse Analytics</h3>
+        <p>A real-time analytics dashboard with custom charting and dense, scannable data layouts.</p>
+        <div class="project-card__stack">
+          <span>Vue 3</span><span>D3.js</span><span>WebSockets</span>
+        </div>
+        <a href="#" class="project-card__link">View case study →</a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section contact">
+    <p class="section__eyebrow">04 — Contact</p>
+    <h2 class="contact__title">Let's build something <span class="text-orange">considered.</span></h2>
+    <p class="contact__sub">Open to freelance work and select full-time roles. Reach out and I'll get back within a day or two.</p>
+
+    <form class="contact__form" id="contactForm">
+      <div class="form-row">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required>
+      </div>
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-row">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" placeholder="Tell me about your project" required></textarea>
+      </div>
+      <button type="submit" class="btn btn--primary">Send Message</button>
+      <p class="form-status" id="formStatus" aria-live="polite"></p>
+    </form>
+
+    <div class="contact__social">
+      <a href="#" aria-label="GitHub">GitHub</a>
+      <a href="#" aria-label="LinkedIn">LinkedIn</a>
+      <a href="#" aria-label="Twitter">Twitter</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; <span id="year"></span> Alex Rivera. Built with HTML, CSS &amp; JavaScript.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
