@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltEdge PCs | Premium Custom Computers</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==================== 
+           CSS VARIABLES 
+        ==================== */
+        :root {
+            --white: #FFFFFF;
+            --cream: #FFF7ED;
+            --pale-purple: #D8B4FE;
+            --lavender: #E9D5FF;
+            --soft-blue: #BFDBFE;
+            --text-dark: #111827;
+            --text-light: #6B7280;
+            --border-light: rgba(17, 24, 39, 0.08);
+            
+            --font-head: 'Space Grotesk', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            
+            --nav-height: 80px;
+            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-fast: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* ==================== 
+           GLOBAL & RESET 
+        ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Hide default cursor on devices with a pointing device */
+        @media (pointer: fine) {
+            * { cursor: none !important; }
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-head);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        section { padding: 8rem 0; position: relative; }
+
+        /* ==================== 
+           CUSTOM CURSOR 
+        ==================== */
+        .cursor-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: normal;
+        }
+
+        .custom-cursor {
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            transform-origin: center;
+            will-change: transform;
+            transition: width 0.3s ease, height 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 4px 12px rgba(216, 180, 254, 0.4));
+        }
+
+        .cursor-svg {
+            width: 100%;
+            height: 100%;
+            fill: url(#cursor-gradient);
+            stroke: rgba(255,255,255,0.8);
+            stroke-width: 1.5;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Cursor States */
+        .cursor-wrapper.click .custom-cursor {
+            transform: scale(0.9);
+        }
+        
+        .cursor-wrapper.hover-active .custom-cursor {
+            width: 32px;
+            height: 32px;
+            top: -16px;
+            left: -16px;
+            filter: drop-shadow(0 8px 20px rgba(233, 213, 255, 0.8)) brightness(1.2);
+        }
+
+        .cursor-wrapper.hover-text .custom-cursor {
+            width: 14px;
+            height: 14px;
+            top: -7px;
+            left: -7px;
+            filter: drop-shadow(0 2px 5px rgba(216, 180, 254, 0.2));
+            opacity: 0.8;
+        }
+
+        @media (pointer: coarse) {
+            .cursor-wrapper { display: none; }
+        }
+
+        /* ==================== 
+           TYPOGRAPHY 
+        ==================== */
+        .title-huge { font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 900; line-height: 1; }
+        .title-large { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 700; margin-bottom: 2rem; }
+        .subtitle { font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 400; color: var(--text-light); max-width: 600px; }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #B19CD9, #8C9EFF, #FFD1DC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ==================== 
+           BUTTONS & LINKS 
+        ==================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            background: var(--white);
+            color: var(--text-dark);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: var(--transition-smooth);
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--pale-purple), var(--soft-blue));
+            color: var(--white);
+            box-shadow: 0 8px 25px rgba(216, 180, 254, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--text-dark);
+            box-shadow: none;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--lavender), var(--soft-blue));
+            opacity: 0;
+            z-index: -1;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-primary:hover::before { opacity: 1; }
+        .btn-outline:hover { background: var(--text-dark); color: var(--white); border-color: var(--text-dark); }
+        .btn-outline:hover::before { opacity: 0; }
+
+        /* Ripple Effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        /* ==================== 
+           NAVIGATION 
+        ==================== */
+        .progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--pale-purple), var(--soft-blue));
+            z-index: 10001;
+            width: 0%;
+        }
+
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            height: var(--nav-height);
+            z-index: 1000;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-mark {
+            width: 32px; height: 32px;
+            background: linear-gradient(135deg, var(--pale-purple), var(--soft-blue));
+            border-radius: 8px;
+            display: grid; place-items: center;
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--pale-purple), var(--soft-blue));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 28px; height: 2px;
+            background: var(--text-dark);
+            transition: var(--transition-fast);
+        }
+
+        /* ==================== 
+           HERO SECTION 
+        ==================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: var(--nav-height);
+            background: var(--cream);
+            overflow: hidden;
+        }
+
+        .hero-bg-blobs {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 10s ease-in-out infinite alternate;
+        }
+
+        .blob-1 { top: 10%; left: -10%; width: 50vw; height: 50vw; background: var(--lavender); }
+        .blob-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: var(--soft-blue); animation-delay: -5s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(5%, 10%) scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text .subtitle {
+            margin: 2rem 0 3rem;
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 600px;
+            perspective: 1000px;
+        }
+
+        .glass-placeholder {
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.8);
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotateY(-15deg) rotateX(10deg);
+            animation: levitate 6s ease-in-out infinite alternate;
+        }
+
+        .glass-placeholder i {
+            font-size: 8rem;
+            color: var(--white);
+            filter: drop-shadow(0 10px 20px rgba(216, 180, 254, 0.5));
+        }
+
+        @keyframes levitate {
+            0% { transform: translateY(0) rotateY(-15deg) rotateX(10deg); }
+            100% { transform: translateY(-30px) rotateY(-10deg) rotateX(5deg); }
+        }
+
+        /* ==================== 
+           ABOUT SECTION 
+        ==================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .stat-card {
+            padding: 3rem 2rem;
+            background: var(--white);
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-light);
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+        
+        .stat-card:nth-child(2) { transform: translateY(2rem); }
+        .stat-card:nth-child(4) { transform: translateY(2rem); }
+
+        .stat-card:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 20px 50px rgba(216, 180, 254, 0.15);
+            border-color: var(--pale-purple);
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            font-family: var(--font-head);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-dark), var(--pale-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+
+        /* ==================== 
+           SERVICES SECTION 
+        ==================== */
+        .services-section {
+            background: #FAFAFA;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 3rem 2.5rem;
+            border-radius: 24px;
+            border: 1px solid var(--border-light);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--cream), var(--lavender));
+            opacity: 0; z-index: -1;
+            transition: var(--transition-smooth);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: transparent;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .service-card:hover::before { opacity: 0.4; }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            transition: var(--transition-fast);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            color: #A855F7;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ==================== 
+           PRICING SECTION 
+        ==================== */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+            align-items: center;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            border: 1px solid var(--border-light);
+            text-align: left;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+        }
+
+        .pricing-card.highlight {
+            background: var(--text-dark);
+            color: var(--white);
+            transform: scale(1.05);
+            border: none;
+            box-shadow: 0 30px 60px rgba(17, 24, 39, 0.2);
+        }
+
+        .pricing-card.highlight:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .pricing-card.highlight .btn {
+            background: var(--white);
+            color: var(--text-dark);
+        }
+
+        .pricing-card.highlight .feature-list li { color: rgba(255,255,255,0.8); }
+
+        .plan-name {
+            font-family: var(--font-head);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .plan-price {
+            font-size: 3.5rem;
+            font-family: var(--font-head);
+            font-weight: 900;
+            margin-bottom: 2rem;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+        .pricing-card.highlight .plan-price span { color: rgba(255,255,255,0.6); }
+
+        .feature-list {
+            margin-bottom: 3rem;
+        }
+
+        .feature-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-light);
+        }
+
+        .feature-list i { color: #A855F7; }
+
+        /* ==================== 
+           CONTACT SECTION 
+        ==================== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            margin-top: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--cream);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            flex-shrink: 0;
+            transition: var(--transition-fast);
+        }
+
+        .contact-card:hover .contact-icon {
+            background: var(--pale-purple);
+            color: var(--white);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-control {
+            width: 100%;
+            padding: 1rem 0;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--border-light);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--text-dark);
+            outline: none;
+            transition: var(--transition-fast);
+        }
+
+        .input-control:focus {
+            border-bottom-color: var(--pale-purple);
+        }
+
+        .input-control::placeholder {
+            color: #9CA3AF;
+        }
+
+        textarea.input-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* ==================== 
+           FOOTER 
+        ==================== */
+        footer {
+            background: var(--cream);
+            padding: 6rem 0 2rem;
+            position: relative;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-heading {
+            font-family: var(--font-head);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links li { margin-bottom: 1rem; }
+        .footer-links a {
+            color: var(--text-light);
+            transition: var(--transition-fast);
+        }
+        .footer-links a:hover { color: var(--text-dark); }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            transition: var(--transition-fast);
+        }
+
+        .social-link:hover {
+            background: var(--text-dark);
+            color: var(--white);
+            border-color: var(--text-dark);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .back-to-top:hover {
+            background: var(--pale-purple);
+            color: var(--white);
+            border-color: var(--pale-purple);
+            transform: translateY(-5px);
+        }
+
+        /* ==================== 
+           ANIMATIONS & UTILS 
+        ==================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ==================== 
+           RESPONSIVE 
+        ==================== */
+        @media (max-width: 1024px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-text .subtitle { margin: 1.5rem auto; }
+            .hero-buttons { justify-content: center; }
+            .hero-visual { height: 400px; margin-top: 3rem; }
+            
+            .about-grid { grid-template-columns: 1fr; gap: 4rem; text-align: center; }
+            .stats-grid { text-align: left; }
+            
+            .pricing-grid { grid-template-columns: 1fr; max-width: 500px; margin: 4rem auto; }
+            .pricing-card.highlight { transform: scale(1); }
+            .pricing-card.highlight:hover { transform: translateY(-10px); }
+            
+            .contact-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .menu-btn { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 0; left: -100%;
+                width: 100%; height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: var(--transition-smooth);
+            }
+            .nav-links.active { left: 0; }
+            .nav-links a { font-size: 1.5rem; }
+            
+            .menu-btn.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .menu-btn.active span:nth-child(2) { opacity: 0; }
+            .menu-btn.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            
+            .stats-grid { grid-template-columns: 1fr; }
+            .stat-card:nth-child(2), .stat-card:nth-child(4) { transform: translateY(0); }
+            
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="cursor-wrapper" id="cursorWrapper">
+        <div class="custom-cursor" id="customCursor">
+            <svg class="cursor-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="cursor-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FFF7ED" />
+                        <stop offset="33%" stop-color="#E9D5FF" />
+                        <stop offset="66%" stop-color="#D8B4FE" />
+                        <stop offset="100%" stop-color="#BFDBFE" />
+                    </linearGradient>
+                </defs>
+                <path d="M 4.5 2.5 C 3.5 2 2.5 3 3 4 L 9 20 C 9.5 21 11 21 11.5 20 L 13.5 13.5 L 20 11.5 C 21 11 21 9.5 20 9 L 4.5 2.5 Z" />
+            </svg>
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo magnetic hover-trigger">
+                <div class="logo-mark"><i class="fa-solid fa-bolt"></i></div>
+                VoltEdge PCs
+            </a>
+            
+            <nav class="nav-links" id="navLinks">
+                <a href="#home" class="active hover-trigger">Home</a>
+                <a href="#about" class="hover-trigger">About</a>
+                <a href="#services" class="hover-trigger">Services</a>
+                <a href="#pricing" class="hover-trigger">Pricing</a>
+                <a href="#contact" class="hover-trigger">Contact</a>
+            </nav>
+
+            <button class="menu-btn hover-trigger" id="menuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-bg-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+        </div>
+        
+        <div class="container hero-content">
+            <div class="hero-text reveal-left">
+                <h1 class="title-huge">Build Without <br><span class="text-gradient">Limits.</span></h1>
+                <p class="subtitle">Premium custom-built PCs engineered for <span id="typingText">gamers</span><span class="cursor">|</span></p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary magnetic hover-trigger ripple-btn">Build Your PC</a>
+                    <a href="#services" class="btn btn-outline magnetic hover-trigger ripple-btn">View Services</a>
+                </div>
+            </div>
+            
+            <div class="hero-visual reveal">
+                <div class="glass-placeholder hover-trigger">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container about-grid">
+            <div class="about-text reveal-left">
+                <h2 class="title-large">Engineering <br>Perfection.</h2>
+                <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 1.5rem;">
+                    At VoltEdge PCs, we believe a computer is more than just a sum of its parts. It's the engine of your creativity, the arena of your victories, and the foundation of your professional success.
+                </p>
+                <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 2.5rem;">
+                    Our mission is to craft visually stunning, thermally optimized, and ruthlessly powerful systems tailored specifically to your unique workflow. Every cable routed, every thermal compound applied, and every BIOS setting tuned reflects our commitment to premium craftsmanship.
+                </p>
+                
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">The VoltEdge Workflow</h3>
+                <ul style="color: var(--text-light); display: flex; flex-direction: column; gap: 10px;">
+                    <li><i class="fa-solid fa-arrow-right" style="color: var(--pale-purple); margin-right: 10px;"></i> Detailed Needs Consultation</li>
+                    <li><i class="fa-solid fa-arrow-right" style="color: var(--pale-purple); margin-right: 10px;"></i> Bespoke Component Selection</li>
+                    <li><i class="fa-solid fa-arrow-right" style="color: var(--pale-purple); margin-right: 10px;"></i> Precision Assembly & Cable Management</li>
+                    <li><i class="fa-solid fa-arrow-right" style="color: var(--pale-purple); margin-right: 10px;"></i> 24-Hour Intensive Stress Testing</li>
+                </ul>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card reveal hover-trigger">
+                    <div class="stat-number counter" data-target="500">0</div>
+                    <div class="stat-label">PCs Built</div>
+                </div>
+                <div class="stat-card reveal hover-trigger" style="transition-delay: 0.1s;">
+                    <div class="stat-number"><span class="counter" data-target="99">0</span>%</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
+                <div class="stat-card reveal hover-trigger" style="transition-delay: 0.2s;">
+                    <div class="stat-number counter" data-target="5">0</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card reveal hover-trigger" style="transition-delay: 0.3s;">
+                    <div class="stat-number"><span class="counter" data-target="24">0</span>/7</div>
+                    <div class="stat-label">Support Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="reveal" style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <h2 class="title-large">Tailored <br>Capabilities.</h2>
+                <p class="subtitle" style="margin: 0 auto;">We don't build generic boxes. We engineer specialized tools designed to dominate specific tasks.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card reveal hover-trigger">
+                    <i class="fa-solid fa-gamepad service-icon"></i>
+                    <h3>Gaming PCs</h3>
+                    <p style="color: var(--text-light);">Maximum frame rates, elite thermal performance, and striking aesthetics for 1440p and 4K dominance.</p>
+                </div>
+                <div class="service-card reveal hover-trigger" style="transition-delay: 0.1s;">
+                    <i class="fa-solid fa-brain service-icon"></i>
+                    <h3>AI Workstations</h3>
+                    <p style="color: var(--text-light);">Multi-GPU configurations with massive compute power designed for machine learning and deep learning.</p>
+                </div>
+                <div class="service-card reveal hover-trigger" style="transition-delay: 0.2s;">
+                    <i class="fa-solid fa-video service-icon"></i>
+                    <h3>Editing PCs</h3>
+                    <p style="color: var(--text-light);">Smooth timeline scrubbing in 4K/8K. Optimized CPU/RAM ratios for lightning-fast render times.</p>
+                </div>
+                <div class="service-card reveal hover-trigger">
+                    <i class="fa-solid fa-tower-broadcast service-icon"></i>
+                    <h3>Streaming PCs</h3>
+                    <p style="color: var(--text-light);">Dedicated hardware encoding ensuring a flawless, lag-free broadcast while maintaining high in-game FPS.</p>
+                </div>
+                <div class="service-card reveal hover-trigger" style="transition-delay: 0.1s;">
+                    <i class="fa-solid fa-wrench service-icon"></i>
+                    <h3>PC Upgrades</h3>
+                    <p style="color: var(--text-light);">Surgical component swaps to breathe new life into your aging system without replacing everything.</p>
+                </div>
+                <div class="service-card reveal hover-trigger" style="transition-delay: 0.2s;">
+                    <i class="fa-solid fa-gauge-high service-icon"></i>
+                    <h3>Optimization</h3>
+                    <p style="color: var(--text-light);">BIOS flashing, fan curve tuning, undervolting, and OS debloating for maximum efficiency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <div class="container">
+            <div class="reveal" style="text-align: center;">
+                <h2 class="title-large">Transparent <br>Tiers.</h2>
+                <p class="subtitle" style="margin: 0 auto;">Baseline configurations to guide you. Every final build is custom quoted based on real-time market part prices.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card reveal hover-trigger">
+                    <h3 class="plan-name">Starter Build</h3>
+                    <div class="plan-price">₹35k<span>+</span></div>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> 1080p Esports Gaming</li>
+                        <li><i class="fa-solid fa-check"></i> Entry Tier CPU & GPU</li>
+                        <li><i class="fa-solid fa-check"></i> 16GB RAM / 500GB NVMe</li>
+                        <li><i class="fa-solid fa-check"></i> Professional Assembly</li>
+                        <li><i class="fa-solid fa-check"></i> Standard Cable Management</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline ripple-btn" style="width: 100%;">Select Tier</a>
+                </div>
+                
+                <div class="pricing-card highlight reveal hover-trigger" style="transition-delay: 0.1s;">
+                    <h3 class="plan-name">Gaming Build</h3>
+                    <div class="plan-price">₹75k<span>+</span></div>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> 1440p AAA Gaming</li>
+                        <li><i class="fa-solid fa-check"></i> Mid-High Tier Latest GPU</li>
+                        <li><i class="fa-solid fa-check"></i> 32GB DDR5 / 1TB Gen4</li>
+                        <li><i class="fa-solid fa-check"></i> AIO Liquid Cooling</li>
+                        <li><i class="fa-solid fa-check"></i> Custom Sleeved Cables</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary ripple-btn" style="width: 100%;">Select Tier</a>
+                </div>
+                
+                <div class="pricing-card reveal hover-trigger" style="transition-delay: 0.2s;">
+                    <h3 class="plan-name">Creator / AI</h3>
+                    <div class="plan-price">₹1.5L<span>+</span></div>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> 4K Editing & Rendering</li>
+                        <li><i class="fa-solid fa-check"></i> High Core Count CPU</li>
+                        <li><i class="fa-solid fa-check"></i> 64GB+ RAM / 2TB+ Gen4</li>
+                        <li><i class="fa-solid fa-check"></i> Premium Thermal Design</li>
+                        <li><i class="fa-solid fa-check"></i> Extensive Stress Testing</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline ripple-btn" style="width: 100%;">Select Tier</a>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 3rem; color: var(--text-light); font-size: 0.9rem;">
+                Looking for an Enterprise or Extreme Custom Loop build? Contact us for a specialized consultation.
+            </p>
+        </div>
+    </section>
+
+    <section id="contact" style="background: var(--cream);">
+        <div class="container">
+            <div class="reveal-left">
+                <h2 class="title-large">Start Your <br>Build.</h2>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info reveal-left" style="transition-delay: 0.1s;">
+                    <div class="contact-card hover-trigger">
+                        <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div>
+                            <h4 style="font-size: 1.2rem; margin-bottom: 5px;">Email Us</h4>
+                            <p style="color: var(--text-light);">builds@voltedgepcs.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card hover-trigger">
+                        <div class="contact-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div>
+                            <h4 style="font-size: 1.2rem; margin-bottom: 5px;">WhatsApp</h4>
+                            <p style="color: var(--text-light);">+91 98765 43210</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card hover-trigger">
+                        <div class="contact-icon"><i class="fa-brands fa-instagram"></i></div>
+                        <div>
+                            <h4 style="font-size: 1.2rem; margin-bottom: 5px;">Instagram</h4>
+                            <p style="color: var(--text-light);">@voltedge.pcs</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card hover-trigger">
+                        <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+                        <div>
+                            <h4 style="font-size: 1.2rem; margin-bottom: 5px;">Business Hours</h4>
+                            <p style="color: var(--text-light);">Mon - Sat: 10:00 AM - 7:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form reveal" onsubmit="event.preventDefault(); alert('Message Sent. We will contact you shortly.');">
+                    <div class="input-group">
+                        <input type="text" class="input-control hover-text" placeholder="Your Name" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" class="input-control hover-text" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="input-control hover-text" placeholder="Phone Number">
+                    </div>
+                    <div class="input-group">
+                        <select class="input-control hover-text" required style="cursor: none;">
+                            <option value="" disabled selected>Select Service...</option>
+                            <option value="gaming">Gaming PC</option>
+                            <option value="creator">Creator/Editing PC</option>
+                            <option value="ai">AI Workstation</option>
+                            <option value="upgrade">PC Upgrade</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <textarea class="input-control hover-text" placeholder="Tell us about your budget, use-case, and aesthetic preferences..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary magnetic hover-trigger ripple-btn" style="align-self: flex-start;">Send Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid reveal">
+                <div>
+                    <a href="#" class="logo hover-trigger" style="margin-bottom: 1rem; display: inline-flex;">
+                        <div class="logo-mark"><i class="fa-solid fa-bolt"></i></div>
+                        VoltEdge
+                    </a>
+                    <p style="color: var(--text-light); font-size: 0.95rem;">Premium custom PC building, hardware consultation, and performance optimization.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link hover-trigger"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-link hover-trigger"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-link hover-trigger"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home" class="hover-text">Home</a></li>
+                        <li><a href="#about" class="hover-text">About Us</a></li>
+                        <li><a href="#services" class="hover-text">Services</a></li>
+                        <li><a href="#pricing" class="hover-text">Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-heading">Expertise</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services" class="hover-text">Gaming Builds</a></li>
+                        <li><a href="#services" class="hover-text">AI Workstations</a></li>
+                        <li><a href="#services" class="hover-text">Creator Setups</a></li>
+                        <li><a href="#services" class="hover-text">Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-heading">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="hover-text">Privacy Policy</a></li>
+                        <li><a href="#" class="hover-text">Terms of Service</a></li>
+                        <li><a href="#" class="hover-text">Warranty Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom reveal">
+                <p>&copy; 2026 VoltEdge PCs. All rights reserved.</p>
+                <div class="back-to-top hover-trigger" onclick="window.scrollTo(0,0)">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            /* =======================================
+               1. CUSTOM CURSOR LOGIC
+            ======================================= */
+            const cursorWrapper = document.getElementById('cursorWrapper');
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let cursorX = mouseX;
+            let cursorY = mouseY;
+            let isHovering = false;
+            
+            // Hide custom cursor on touch devices fallback
+            if (window.matchMedia("(pointer: coarse)").matches) {
+                cursorWrapper.style.display = 'none';
+            }
+
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            window.addEventListener('mousedown', () => cursorWrapper.classList.add('click'));
+            window.addEventListener('mouseup', () => cursorWrapper.classList.remove('click'));
+
+            // Smooth Animation Loop
+            const animateCursor = () => {
+                // Lerp (Linear Interpolation) for smooth gliding
+                let dx = mouseX - cursorX;
+                let dy = mouseY - cursorY;
+                cursorX += dx * 0.2;
+                cursorY += dy * 0.2;
+                
+                // Calculate slight rotation based on velocity
+                let rot = dx * 0.2; 
+                
+                cursorWrapper.style.transform = `translate(${cursorX}px, ${cursorY}px) rotate(${rot}deg)`;
+                requestAnimationFrame(animateCursor);
+            };
+            animateCursor();
+
+            // Hover Effects triggers
+            const hoverTriggers = document.querySelectorAll('.hover-trigger, a, button, .card');
+            hoverTriggers.forEach(el => {
+                el.addEventListener('mouseenter', () => cursorWrapper.classList.add('hover-active'));
+                el.addEventListener('mouseleave', () => cursorWrapper.classList.remove('hover-active'));
+            });
+
+            const textTriggers = document.querySelectorAll('.hover-text, p, h1, h2, h3, h4, h5, h6, span');
+            textTriggers.forEach(el => {
+                el.addEventListener('mouseenter', () => cursorWrapper.classList.add('hover-text'));
+                el.addEventListener('mouseleave', () => cursorWrapper.classList.remove('hover-text'));
+            });
+
+
+            /* =======================================
+               2. MAGNETIC BUTTONS
+            ======================================= */
+            const magneticElements = document.querySelectorAll('.magnetic');
+            magneticElements.forEach(el => {
+                el.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    this.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                });
+                el.addEventListener('mouseleave', function() {
+                    this.style.transform = `translate(0px, 0px)`;
+                });
+            });
+
+
+            /* =======================================
+               3. RIPPLE EFFECT
+            ======================================= */
+            const rippleBtns = document.querySelectorAll('.ripple-btn');
+            rippleBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    let rect = this.getBoundingClientRect();
+                    let x = e.clientX - rect.left;
+                    let y = e.clientY - rect.top;
+                    
+                    let ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+                    
+                    this.appendChild(ripple);
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+
+
+            /* =======================================
+               4. SCROLL PROGRESS & STICKY NAV
+            ======================================= */
+            const header = document.getElementById('header');
+            const progressBar = document.getElementById('progressBar');
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            window.addEventListener('scroll', () => {
+                let scrollY = window.scrollY;
+                
+                // Sticky Nav
+                if (scrollY > 50) header.classList.add('scrolled');
+                else header.classList.remove('scrolled');
+
+                // Progress Bar
+                let docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                let scrollPercent = (scrollY / docHeight) * 100;
+                progressBar.style.width = `${scrollPercent}%`;
+
+                // Active Section Highlighting
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+
+            /* =======================================
+               5. MOBILE MENU
+            ======================================= */
+            const menuBtn = document.getElementById('menuBtn');
+            const navMenu = document.getElementById('navLinks');
+            
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menuBtn.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+
+
+            /* =======================================
+               6. SCROLL REVEAL ANIMATIONS
+            ======================================= */
+            const reveals = document.querySelectorAll('.reveal, .reveal-left');
+            
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const elementVisible = 100;
+                
+                reveals.forEach(reveal => {
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveal.classList.add('active');
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Trigger on load
+
+
+            /* =======================================
+               7. ANIMATED STATS COUNTER
+            ======================================= */
+            const counters = document.querySelectorAll('.counter');
+            let counted = false;
+
+            const runCounters = () => {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 2000;
+                    const increment = target / (duration / 16); // ~60fps
+                    let current = 0;
+
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.innerText = Math.ceil(current);
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCounter();
+                });
+            };
+
+            window.addEventListener('scroll', () => {
+                const statsSection = document.querySelector('.stats-grid');
+                if (!statsSection) return;
+                
+                const sectionPos = statsSection.getBoundingClientRect().top;
+                if (sectionPos < window.innerHeight - 100 && !counted) {
+                    runCounters();
+                    counted = true;
+                }
+            });
+
+
+            /* =======================================
+               8. TYPING ANIMATION
+            ======================================= */
+            const words = ["gamers", "creators", "developers", "AI engineers", "professionals"];
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const typingSpan = document.getElementById('typingText');
+
+            const type = () => {
+                const currentWord = words[wordIndex];
+                
+                if (isDeleting) {
+                    typingSpan.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typingSpan.textContent = currentWord.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                let typeSpeed = isDeleting ? 50 : 100;
+
+                if (!isDeleting && charIndex === currentWord.length) {
+                    typeSpeed = 2000; // Pause at end of word
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    typeSpeed = 500; // Pause before new word
+                }
+
+                setTimeout(type, typeSpeed);
+            };
+            
+            // Start typing effect slightly after load
+            setTimeout(type, 1000);
+            
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltEdge PCs | Premium Custom Workstations & Gaming PCs</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            /* Backgrounds */
+            --bg-black: #08080A;
+            --bg-navy: #0F172A;
+            --bg-charcoal: #111827;
+            
+            /* Accents */
+            --accent-cream: #FFF7ED;
+            --accent-purple: #D8B4FE;
+            --accent-lavender: #E9D5FF;
+            --accent-blue: #BFDBFE;
+            
+            /* UI Elements */
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --glass-bg: rgba(15, 23, 42, 0.4);
+            --glass-border: rgba(216, 180, 254, 0.15);
+            --glass-glow: 0 8px 32px 0 rgba(216, 180, 254, 0.05);
+            
+            /* Transitions */
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* --- RESET & BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Custom cursor */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- CUSTOM CURSOR --- */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 10000;
+            pointer-events: none;
+        }
+        .cursor-dot {
+            width: 6px; height: 6px;
+            background: var(--accent-cream);
+        }
+        
+
+        /* --- LOADING SCREEN --- */
+        #loader {
+            position: fixed; inset: 0;
+            background: var(--bg-black);
+            z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+        .loader-ring {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: var(--accent-purple);
+            border-right-color: var(--accent-blue);
+            animation: spin 1s linear infinite;
+            filter: drop-shadow(0 0 10px var(--accent-purple));
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* --- SCROLL PROGRESS --- */
+        .scroll-progress {
+            position: fixed; top: 0; left: 0;
+            height: 3px; background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+            z-index: 9998; width: 0%;
+            box-shadow: 0 0 10px var(--accent-purple);
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+        .section-padding { padding: 120px 0; }
+        
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: var(--glass-glow);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent-cream), var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 1rem 2.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600; font-size: 1rem;
+            border-radius: 50px;
+            transition: var(--transition);
+            position: relative; overflow: hidden;
+            z-index: 1;
+            border: none;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            color: var(--bg-black);
+            box-shadow: 0 0 20px rgba(216, 180, 254, 0.4);
+        }
+        .btn-primary::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            opacity: 0; transition: var(--transition); z-index: -1;
+        }
+        .btn-primary:hover::before { opacity: 1; }
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(191, 219, 254, 0.6);
+            transform: scale(1.05);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-cream);
+            border: 1px solid var(--accent-purple);
+        }
+        .btn-secondary:hover {
+            background: rgba(216, 180, 254, 0.1);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 20px rgba(216, 180, 254, 0.2);
+        }
+        /* Ripple */
+        .ripple {
+            position: absolute; border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0); animation: ripple-anim 0.6s linear;
+            pointer-events: none;
+        }
+        @keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }
+
+        /* --- NAVIGATION --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 1.5rem 0; z-index: 1000;
+            transition: var(--transition);
+        }
+        header.scrolled {
+            padding: 1rem 0;
+            background: rgba(8, 8, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo {
+            font-size: 1.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 800;
+            display: flex; align-items: center; gap: 0.75rem; color: var(--accent-cream);
+        }
+        .logo i { color: var(--accent-purple); filter: drop-shadow(0 0 5px var(--accent-purple)); }
+        
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a {
+            font-size: 0.95rem; font-weight: 500; color: var(--text-muted);
+            position: relative; transition: color 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-cream); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; box-shadow: 0 0 8px var(--accent-purple); }
+
+        .hamburger { display: none; flex-direction: column; gap: 6px; }
+        .hamburger span {
+            width: 30px; height: 2px; background: var(--text-main);
+            transition: 0.4s;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative; min-height: 100vh;
+            display: flex; align-items: center;
+            overflow: hidden; padding-top: 80px;
+        }
+        
+        /* Interactive Background */
+        #hero-canvas { position: absolute; inset: 0; z-index: 0; }
+        .mesh-gradient {
+            position: absolute; inset: 0; z-index: 0;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(216, 180, 254, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(191, 219, 254, 0.08) 0%, transparent 50%);
+            filter: blur(60px);
+        }
+        
+        .hero-content {
+            position: relative; z-index: 1;
+            display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem;
+            align-items: center;
+        }
+        .hero-text h1 {
+            font-size: clamp(3rem, 6vw, 5.5rem); margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+        .hero-text p {
+            font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+        .hero-btns { display: flex; gap: 1rem; }
+        
+        .hero-visual {
+            position: relative; perspective: 1000px;
+        }
+        .pc-placeholder {
+            width: 100%; aspect-ratio: 4/5;
+            background: linear-gradient(145deg, var(--bg-charcoal), var(--bg-navy));
+            border-radius: 30px;
+            border: 1px solid rgba(216, 180, 254, 0.2);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 60px rgba(216,180,254,0.05);
+            display: flex; align-items: center; justify-content: center;
+            animation: float 6s ease-in-out infinite;
+            position: relative; overflow: hidden;
+        }
+        .pc-placeholder::before {
+            content: ''; position: absolute; width: 150%; height: 150%;
+            background: conic-gradient(from 0deg, transparent, var(--accent-purple), transparent 30%);
+            animation: rotate-glow 4s linear infinite;
+        }
+        .pc-placeholder::after {
+            content: ''; position: absolute; inset: 2px;
+            background: var(--bg-black); border-radius: 28px;
+        }
+        .pc-core {
+            position: relative; z-index: 2; font-size: 4rem;
+            background: linear-gradient(to right, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text; color: transparent;
+            filter: drop-shadow(0 0 15px var(--accent-blue));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes rotate-glow {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+            align-items: center;
+        }
+        .section-header { margin-bottom: 3rem; }
+        .section-header h2 { font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 1rem; }
+        .section-header p { color: var(--text-muted); font-size: 1.1rem; }
+        
+        .timeline { display: flex; flex-direction: column; gap: 2rem; position: relative; }
+        .timeline::before {
+            content: ''; position: absolute; left: 24px; top: 0; bottom: 0;
+            width: 2px; background: linear-gradient(to bottom, var(--accent-purple), transparent);
+        }
+        .timeline-step { display: flex; gap: 2rem; position: relative; z-index: 1; }
+        .step-icon {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: var(--bg-charcoal); border: 1px solid var(--accent-purple);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent-cream); flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(216,180,254,0.1);
+        }
+        .step-content h4 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--accent-cream); }
+        .step-content p { color: var(--text-muted); font-size: 0.95rem; }
+
+        .stats-wrapper {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+        }
+        .stat-card {
+            padding: 2rem; text-align: center;
+            background: linear-gradient(145deg, rgba(17,24,39,0.8), rgba(15,23,42,0.8));
+            border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+        }
+        .stat-card:hover { transform: translateY(-5px); border-color: var(--accent-purple); }
+        .stat-num { font-size: 3rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 0.5rem; font-family: 'Space Grotesk'; }
+        .stat-label { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- SERVICES SECTION --- */
+        .services-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;
+            perspective: 1000px;
+        }
+        .service-card {
+            padding: 2.5rem 2rem;
+            position: relative; overflow: hidden;
+            border-radius: 24px; background: var(--bg-charcoal);
+            border: 1px solid rgba(255,255,255,0.05);
+            transform-style: preserve-3d;
+            transition: border-color 0.4s, box-shadow 0.4s;
+        }
+        .service-card::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(216, 180, 254, 0.06), transparent 40%);
+            z-index: 0; opacity: 0; transition: opacity 0.4s;
+        }
+        .service-card:hover::before { opacity: 1; }
+        .service-card:hover { border-color: rgba(216,180,254,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        .service-icon {
+            font-size: 2.5rem; color: var(--accent-purple); margin-bottom: 1.5rem;
+            position: relative; z-index: 1; transform: translateZ(30px);
+            filter: drop-shadow(0 0 10px rgba(216,180,254,0.4));
+        }
+        .service-card h3 { font-size: 1.4rem; margin-bottom: 1rem; position: relative; z-index: 1; transform: translateZ(20px); }
+        .service-card p { color: var(--text-muted); font-size: 0.95rem; position: relative; z-index: 1; transform: translateZ(10px); }
+
+        /* --- PRICING SECTION --- */
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;
+            align-items: center; margin-top: 3rem;
+        }
+        .pricing-card {
+            background: var(--bg-navy); border-radius: 24px; padding: 3rem 2rem;
+            position: relative; border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+        }
+        .pricing-card:hover { transform: translateY(-10px); }
+        .pricing-card.popular {
+            background: var(--bg-charcoal);
+            transform: scale(1.05); z-index: 2;
+            border: none;
+        }
+        .pricing-card.popular:hover { transform: scale(1.05) translateY(-10px); }
+        
+        /* Rotating Border for Popular */
+        .popular-border {
+            position: absolute; inset: -2px; border-radius: 26px; z-index: -1;
+            background: conic-gradient(from 0deg, var(--accent-purple), var(--accent-blue), var(--accent-purple));
+            animation: rotate-glow 4s linear infinite;
+        }
+        
+        .badge {
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+            color: var(--bg-black); font-weight: 700; font-size: 0.85rem;
+            padding: 0.5rem 1.2rem; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px;
+        }
+        
+        .price-title { font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent-cream); }
+        .price { font-size: 3rem; font-family: 'Space Grotesk'; font-weight: 700; margin-bottom: 2rem; color: var(--text-main); }
+        .price span { font-size: 1rem; color: var(--text-muted); }
+        
+        .price-features { margin-bottom: 2.5rem; }
+        .price-features li {
+            display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;
+            color: var(--text-muted); font-size: 0.95rem;
+        }
+        .price-features i { color: var(--accent-blue); font-size: 0.8rem; }
+        .pricing-card .btn { width: 100%; }
+
+        /* --- CONTACT SECTION --- */
+        .contact-wrap {
+            display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem;
+        }
+        .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+        .info-card {
+            display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem;
+            background: var(--glass-bg); border-radius: 16px; border: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+        .info-card:hover { transform: translateX(10px); border-color: var(--accent-purple); background: rgba(17,24,39,0.8); }
+        .info-icon {
+            width: 50px; height: 50px; border-radius: 12px;
+            background: rgba(216,180,254,0.1); color: var(--accent-purple);
+            display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
+        }
+        .info-text h4 { font-size: 1.1rem; color: var(--accent-cream); margin-bottom: 0.2rem; }
+        .info-text p { color: var(--text-muted); font-size: 0.9rem; }
+
+        .contact-form {
+            background: var(--bg-charcoal); padding: 3rem; border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .form-group.full { grid-column: 1 / -1; }
+        .form-control {
+            width: 100%; padding: 1rem 1.5rem;
+            background: var(--bg-navy); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px; color: var(--text-main); font-family: 'Outfit';
+            transition: var(--transition); outline: none;
+        }
+        .form-control:focus {
+            border-color: var(--accent-purple); background: var(--bg-black);
+            box-shadow: 0 0 15px rgba(216,180,254,0.1);
+        }
+        textarea.form-control { resize: vertical; min-height: 120px; }
+        .contact-form .btn { width: 100%; margin-top: 1rem; }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 4rem 0 2rem; background: var(--bg-black);
+            position: relative; overflow: hidden;
+        }
+        .footer-grid {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .footer-desc { color: var(--text-muted); margin-top: 1rem; max-width: 300px; font-size: 0.95rem; }
+        .footer-title { font-size: 1.2rem; color: var(--accent-cream); margin-bottom: 1.5rem; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: var(--text-muted); transition: var(--transition); font-size: 0.95rem; }
+        .footer-links a:hover { color: var(--accent-purple); padding-left: 5px; }
+        
+        .social-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
+        .social-btn {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: var(--bg-navy); color: var(--text-main);
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition); border: 1px solid rgba(255,255,255,0.05);
+        }
+        .social-btn:hover { background: var(--accent-purple); color: var(--bg-black); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(216,180,254,0.4); }
+        
+        .footer-bottom {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-muted); font-size: 0.85rem;
+        }
+
+        /* Back to top */
+        #btt-btn {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 50px; height: 50px; border-radius: 50%;
+            background: rgba(15,23,42,0.8); backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-purple); color: var(--accent-purple);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; z-index: 999;
+            opacity: 0; visibility: hidden; transition: var(--transition);
+        }
+        #btt-btn.visible { opacity: 1; visibility: visible; }
+        #btt-btn:hover { background: var(--accent-purple); color: var(--bg-black); box-shadow: 0 0 20px rgba(216,180,254,0.4); }
+
+        /* --- ANIMATIONS (SCROLL REVEAL) --- */
+        .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-left { opacity: 0; transform: translateX(-40px); transition: 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal-left.active { opacity: 1; transform: translateX(0); }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 1024px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-text p { margin: 0 auto 2.5rem; }
+            .hero-btns { justify-content: center; }
+            .hero-visual { width: 70%; margin: 0 auto; }
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .contact-wrap { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .pricing-card.popular { transform: scale(1); }
+            .pricing-card.popular:hover { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed; top: 0; right: -100%;
+                width: 70%; height: 100vh;
+                background: rgba(8, 8, 10, 0.95); backdrop-filter: blur(20px);
+                flex-direction: column; justify-content: center; align-items: center;
+                transition: 0.5s; border-left: 1px solid rgba(255,255,255,0.05);
+            }
+            .nav-links.active { right: 0; }
+            .hamburger { display: flex; z-index: 1001; }
+            .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            
+            .stats-wrapper { grid-template-columns: 1fr; }
+            .form-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .social-links { justify-content: center; }
+            .footer-bottom { flex-direction: column; gap: 1rem; }
+            * { cursor: auto !important; } /* Disable custom cursor on mobile */
+            .cursor-dot, .cursor-outline { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Loader -->
+    <div id="loader">
+        <div class="loader-ring"></div>
+    </div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scroll-bar"></div>
+
+    <!-- Navigation -->
+    <header id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-microchip"></i> VoltEdge
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="mesh-gradient"></div>
+        <div class="container hero-content">
+            <div class="hero-text reveal">
+                <h1>Engineering Performance.<br><span class="text-gradient">Building Dreams.</span></h1>
+                <p>Custom-built workstations and gaming PCs designed for AI, creators, professionals, and enthusiasts who demand uncompromising performance.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn btn-primary magnetic ripple-btn">Build Your PC</a>
+                    <a href="#services" class="btn btn-secondary magnetic ripple-btn">Explore Services</a>
+                </div>
+            </div>
+            <div class="hero-visual reveal">
+                <div class="pc-placeholder tilt-el">
+                    <i class="fa-solid fa-server pc-core"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding">
+        <div class="container about-grid">
+            <div class="about-content reveal-left">
+                <div class="section-header">
+                    <h2>The <span class="text-gradient">VoltEdge</span> Standard</h2>
+                    <p>We blend luxury craftsmanship with cutting-edge technology to create systems that don't just compute—they inspire.</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-step">
+                        <div class="step-icon"><i class="fa-solid fa-comments"></i></div>
+                        <div class="step-content">
+                            <h4>1. Hardware Consultation</h4>
+                            <p>Deep-dive into your workflow, software requirements, and aesthetic preferences.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-icon"><i class="fa-solid fa-layer-group"></i></div>
+                        <div class="step-content">
+                            <h4>2. Component Selection</h4>
+                            <p>Hand-picking synergized parts for zero bottlenecks and maximum efficiency.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                        <div class="step-content">
+                            <h4>3. Precision Assembly</h4>
+                            <p>Immaculate cable management, custom loops, and professional thermal application.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                        <div class="step-content">
+                            <h4>4. Stress Testing & Delivery</h4>
+                            <p>24-hour burn-in tests ensuring absolute stability before it reaches your desk.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-stats reveal">
+                <div class="stats-wrapper glass-panel" style="padding: 3rem; background: var(--bg-navy);">
+                    <div class="stat-card">
+                        <div class="stat-num counter" data-target="98">0</div>
+                        <div class="stat-label">Builds Perfected</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num"><span class="counter" data-target="0">0</span>%</div>
+                        <div class="stat-label">Thermal Throttling</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num counter" data-target="24">0</div>
+                        <div class="stat-label">Hr Stress Test</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num"><span class="counter" data-target="100">0</span>%</div>
+                        <div class="stat-label">Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding" style="background: var(--bg-navy);">
+        <div class="container">
+            <div class="section-header" style="text-align: center; max-width: 700px; margin: 0 auto 4rem;">
+                <h2>Our <span class="text-gradient">Expertise</span></h2>
+                <p>From high-refresh esports rigs to multi-GPU deep learning setups, we engineer systems tailored to your exact domain.</p>
+            </div>
+            <div class="services-grid">
+                
+                <div class="service-card glass-panel tilt-card reveal">
+                    <i class="fa-solid fa-gamepad service-icon"></i>
+                    <h3>Gaming PCs</h3>
+                    <p>Dominant 4K performance, hyper-optimized thermals, and striking aesthetics for the ultimate setup.</p>
+                </div>
+                <div class="service-card glass-panel tilt-card reveal">
+                    <i class="fa-solid fa-brain service-icon"></i>
+                    <h3>AI Workstations</h3>
+                    <p>Colossal compute power with multi-GPU arrays for machine learning and complex data modeling.</p>
+                </div>
+                <div class="service-card glass-panel tilt-card reveal">
+                    <i class="fa-solid fa-film service-icon"></i>
+                    <h3>Editing PCs</h3>
+                    <p>Scrub timelines in 8K smoothly. Massive storage bandwidth and core counts for creators.</p>
+                </div>
+                <div class="service-card glass-panel tilt-card reveal">
+                    <i class="fa-solid fa-tower-broadcast service-icon"></i>
+                    <h3>Streaming PCs</h3>
+                    <p>Dedicated encoding architecture ensuring your broadcast is flawless while gaming.</p>
+                </div>
+                <div class="service-card glass-panel tilt-card reveal">
+                    <i class="fa-solid fa-building service-icon"></i>
+                    <h3>Office PCs</h3>
+                    <p>Silent, reliable, and compact systems designed to maximize daily productivity.</p>
+                </div>
+                <div class="service-card glass-panel tilt-card reveal">
+                    <i class="fa-solid fa-wallet service-icon"></i>
+                    <h3>Budget Builds</h3>
+                    <p>Strategic part selection extracting every drop of performance from your budget.</p>
+                </div>
+                <div class="service-card glass-panel tilt-card reveal">
+                    <i class="fa-solid fa-gem service-icon"></i>
+                    <h3>Premium Builds</h3>
+                    <p>Custom water loops, CNC distro plates, and showcase-level craftsmanship.</p>
+                </div>
+                <div class="service-card glass-panel tilt-card reveal">
+                    <i class="fa-solid fa-arrow-trend-up service-icon"></i>
+                    <h3>Optimization</h3>
+                    <p>BIOS tuning, undervolting, memory overclocking, and OS debloating for max FPS.</p>
+                </div>
+                <div class="service-card glass-panel tilt-card reveal">
+                    <i class="fa-solid fa-microchip service-icon"></i>
+                    <h3>PC Upgrades</h3>
+                    <p>Surgical component replacements breathing new life into your aging system.</p>
+                </div>
+                <div class="service-card glass-panel tilt-card reveal">
+                    <i class="fa-solid fa-user-tie service-icon"></i>
+                    <h3>Consultation</h3>
+                    <p>Expert hardware advice to ensure you buy exactly what you need, nothing less.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section-padding">
+        <div class="container">
+            <div class="section-header" style="text-align: center; max-width: 700px; margin: 0 auto 4rem;">
+                <h2>Build <span class="text-gradient">Tiers</span></h2>
+                <p>Transparent baseline pricing. Every rig is custom quoted based on live market component costs.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                
+                <div class="pricing-card reveal">
+                    <h3 class="price-title">Starter</h3>
+                    <div class="price">₹35k<span>+</span></div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> 1080p Esports Gaming</li>
+                        <li><i class="fa-solid fa-check"></i> Entry Tier CPU/GPU</li>
+                        <li><i class="fa-solid fa-check"></i> 16GB RAM | 500GB NVMe</li>
+                        <li><i class="fa-solid fa-check"></i> Stock Cooling</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary ripple-btn magnetic">Select Plan</a>
+                </div>
+
+                <div class="pricing-card popular reveal">
+                    <div class="popular-border"></div>
+                    <div class="badge">Most Popular</div>
+                    <h3 class="price-title">Gaming</h3>
+                    <div class="price" style="color: var(--accent-purple);">₹75k<span>+</span></div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> 1440p High-FPS Gaming</li>
+                        <li><i class="fa-solid fa-check"></i> Mid-High Tier Latest GPU</li>
+                        <li><i class="fa-solid fa-check"></i> 32GB DDR5 | 1TB Gen4</li>
+                        <li><i class="fa-solid fa-check"></i> AIO Liquid Cooling</li>
+                        <li><i class="fa-solid fa-check"></i> Custom Cable Sleeves</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary ripple-btn magnetic">Select Plan</a>
+                </div>
+
+                <div class="pricing-card reveal">
+                    <h3 class="price-title">Creator</h3>
+                    <div class="price">₹1.2L<span>+</span></div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> 4K Video Editing & 3D</li>
+                        <li><i class="fa-solid fa-check"></i> High Core-Count CPU</li>
+                        <li><i class="fa-solid fa-check"></i> 64GB DDR5 | 2TB+ Gen4</li>
+                        <li><i class="fa-solid fa-check"></i> Professional Airflow Case</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary ripple-btn magnetic">Select Plan</a>
+                </div>
+                
+                <div class="pricing-card reveal">
+                    <h3 class="price-title">AI Workstation</h3>
+                    <div class="price">₹2.5L<span>+</span></div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> Deep Learning & Rendering</li>
+                        <li><i class="fa-solid fa-check"></i> Flagship CPU & Multi-GPU</li>
+                        <li><i class="fa-solid fa-check"></i> 128GB RAM | Raid Storage</li>
+                        <li><i class="fa-solid fa-check"></i> Premium Thermal Design</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary ripple-btn magnetic">Select Plan</a>
+                </div>
+
+            </div>
+            <p style="text-align: center; color: var(--text-muted); margin-top: 3rem; font-size: 0.9rem;">*Enterprise solutions require a custom quote. Final price depends on selected hardware.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding" style="background: var(--bg-navy);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Initiate <span class="text-gradient">Protocol</span></h2>
+                <p>Ready to build? Send us your requirements and we'll engineer the perfect parts list.</p>
+            </div>
+            
+            <div class="contact-wrap">
+                <div class="contact-info reveal-left">
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="info-text">
+                            <h4>Email Direct</h4>
+                            <p>builds@voltedgepcs.com</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div class="info-text">
+                            <h4>WhatsApp</h4>
+                            <p>+91 98765 43210</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fa-brands fa-instagram"></i></div>
+                        <div class="info-text">
+                            <h4>Instagram</h4>
+                            <p>@voltedge.pcs</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="info-text">
+                            <h4>HQ Location</h4>
+                            <p>Tech Hub, Bangalore, IN</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form glass-panel reveal">
+                    <form onsubmit="event.preventDefault(); alert('Transmission Received. We will contact you shortly.');">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email Address" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" class="form-control" placeholder="Phone Number">
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" required style="appearance: none;">
+                                    <option value="" disabled selected>Select Service...</option>
+                                    <option value="gaming">Gaming PC</option>
+                                    <option value="workstation">AI/Creator Workstation</option>
+                                    <option value="upgrade">PC Upgrade</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group full">
+                                <textarea class="form-control" placeholder="Describe your budget, use-case, and preferred aesthetics..." required></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary magnetic ripple-btn">Initialize Build Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#" class="logo" style="margin-bottom: 1rem;">
+                        <i class="fa-solid fa-microchip"></i> VoltEdge PCs
+                    </a>
+                    <p class="footer-desc">Engineering premium custom computing solutions for those who refuse to compromise on performance.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-btn"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-btn"><i class="fa-brands fa-discord"></i></a>
+                        <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Expertise</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">Gaming Rigs</a></li>
+                        <li><a href="#services">AI Workstations</a></li>
+                        <li><a href="#services">Creator PCs</a></li>
+                        <li><a href="#services">Consultation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Hardware Warranty</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 VoltEdge PCs. All rights reserved.</p>
+                <p>Designed with precision.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <a href="#home" id="btt-btn"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <!-- VANILLA JAVASCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Loading Screen
+            const loader = document.getElementById('loader');
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    loader.style.visibility = 'hidden';
+                }, 800);
+            });
+
+            // 2. Custom Cursor
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            let mouseX = 0, mouseY = 0;
+            let outlineX = 0, outlineY = 0;
+
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+                
+                // Card glow mouse position tracker
+                document.querySelectorAll('.service-card').forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+
+            // Smooth trailing for outline
+            function animateCursor() {
+                let dx = mouseX - outlineX;
+                let dy = mouseY - outlineY;
+                outlineX += dx * 0.15;
+                outlineY += dy * 0.15;
+                cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+
+            // Cursor Hover effects
+            const hoverElements = document.querySelectorAll('a, button, .magnetic');
+            hoverElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorOutline.classList.add('cursor-hover');
+                    cursorDot.style.background = 'transparent';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorOutline.classList.remove('cursor-hover');
+                    cursorDot.style.background = 'var(--accent-cream)';
+                });
+            });
+
+            // 3. Navigation & Scroll logic
+            const header = document.getElementById('navbar');
+            const scrollBar = document.getElementById('scroll-bar');
+            const bttBtn = document.getElementById('btt-btn');
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            window.addEventListener('scroll', () => {
+                let scrollY = window.scrollY;
+                
+                // Navbar & BTT
+                if (scrollY > 50) {
+                    header.classList.add('scrolled');
+                    bttBtn.classList.add('visible');
+                } else {
+                    header.classList.remove('scrolled');
+                    bttBtn.classList.remove('visible');
+                }
+
+                // Progress bar
+                let totalHeight = document.body.scrollHeight - window.innerHeight;
+                let progress = (scrollY / totalHeight) * 100;
+                scrollBar.style.width = progress + '%';
+
+                // Active links
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Mobile Menu
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-links');
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+
+            // 4. Scroll Reveal & Counters
+            const reveals = document.querySelectorAll('.reveal, .reveal-left');
+            const counters = document.querySelectorAll('.counter');
+            let countersStarted = false;
+
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const elementVisible = 100;
+
+                reveals.forEach(reveal => {
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveal.classList.add('active');
+                    }
+                });
+
+                // Counters
+                const statsSection = document.querySelector('.about-stats');
+                if(statsSection && !countersStarted) {
+                    const statsTop = statsSection.getBoundingClientRect().top;
+                    if (statsTop < windowHeight - elementVisible) {
+                        countersStarted = true;
+                        counters.forEach(counter => {
+                            const target = +counter.getAttribute('data-target');
+                            const duration = 2000;
+                            const inc = target / (duration / 16);
+                            let current = 0;
+                            const updateCounter = () => {
+                                current += inc;
+                                if (current < target) {
+                                    counter.innerText = Math.ceil(current);
+                                    requestAnimationFrame(updateCounter);
+                                } else {
+                                    counter.innerText = target;
+                                }
+                            };
+                            updateCounter();
+                        });
+                    }
+                }
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // init
+
+            // 5. Magnetic Buttons
+            const magneticBtns = document.querySelectorAll('.magnetic');
+            magneticBtns.forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                });
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = `translate(0px, 0px)`;
+                });
+            });
+
+            // 6. Ripple Effect
+            const ripples = document.querySelectorAll('.ripple-btn');
+            ripples.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    let rect = this.getBoundingClientRect();
+                    let x = e.clientX - rect.left;
+                    let y = e.clientY - rect.top;
+                    
+                    let ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    
+                    this.appendChild(ripple);
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+
+            // 7. 3D Tilt Cards (Services)
+            const tiltCards = document.querySelectorAll('.tilt-card, .tilt-el');
+            tiltCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    // Disable tilt on mobile
+                    if (window.innerWidth < 768) return; 
+                    
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * -10; // Max rotation
+                    const rotateY = ((x - centerX) / centerX) * 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                    card.style.transition = `transform 0.5s ease`;
+                });
+                card.addEventListener('mouseenter', () => {
+                    card.style.transition = `none`;
+                });
+            });
+
+            // 8. Canvas Particles Background (Hero)
+            const canvas = document.getElementById('hero-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2;
+                    this.speedX = Math.random() * 0.5 - 0.25;
+                    this.speedY = Math.random() * 0.5 - 0.25;
+                    // Colors mapping to palette
+                    const colors = ['rgba(216,180,254,0.3)', 'rgba(191,219,254,0.3)', 'rgba(255,247,237,0.2)'];
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x > canvas.width) this.x = 0;
+                    if (this.x < 0) this.x = canvas.width;
+                    if (this.y > canvas.height) this.y = 0;
+                    if (this.y < 0) this.y = canvas.height;
+                }
+                draw() {
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            function initParticles() {
+                particles = [];
+                let count = window.innerWidth < 768 ? 40 : 100;
+                for (let i = 0; i < count; i++) {
+                    particles.push(new Particle());
+                }
+            }
+            initParticles();
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                
+                // Connect near particles
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i; j < particles.length; j++) {
+                        let dx = particles[i].x - particles[j].x;
+                        let dy = particles[i].y - particles[j].y;
+                        let dist = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (dist < 100) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(216, 180, 254, ${0.1 - dist/1000})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animateParticles);
+            }
+            animateParticles();
+        });
+    </script>
+</body>
+</html>
